@@ -1,0 +1,25 @@
+CC = gcc
+CFLAGS = -Wall -Iinclude
+
+SRC = src/main.c src/add.c
+OBJ = $(SRC:.c=.o)
+
+.PHONY: all clean
+
+app: $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $@
+
+%.o: %.c %.h # 패턴 룰 여기서 각 %에는 앞에 의존목록에 속하는 파일이름, 동일한 이름이 들어감. 그래서 main.o 경우, main.h가 들어감. 사실은 에러가 나야하는데 유연하게 gcc가 처리한걸로 보임. 그러므로 의도적으로 빼거나 추가하는게 맞음.
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf app *.o
+
+helloTest: abc def
+	#echo $@
+	#echo $^
+	echo $<
+abc:
+	#echo "abc"
+def:
+	#echo "def"

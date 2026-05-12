@@ -1,0 +1,36 @@
+CC = gcc
+CFLAGS = -Wall -MMD # Generate dependency files / include header files in the dependency
+
+DEBUG = -g
+RELEASE = -O2
+
+debug: CFLAGS += $(DEBUG)
+debug: app
+release: CFLAGS += $(RELEASE)
+release: app
+
+SRC = main.c add.c
+OBJ = $(SRC:.c=.o)
+DEP = $(SRC:.c=.d)
+
+.PHONY: all clean
+
+app: $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $@
+
+-include $(DEP)
+
+#%.o: %.c
+#	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf app *.o
+
+helloTest: abc def
+	#echo $@
+	#echo $^
+	echo $<
+abc:
+	#echo "abc"
+def:
+	#echo "def"
