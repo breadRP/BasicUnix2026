@@ -3,23 +3,22 @@ CFLAGS = -Wall -Iinclude -MMD # Generate dependency files / include header files
 
 SRC = src/main.c src/add.c
 OBJ = $(SRC:.c=.o)
+DEP = $(SRC:.c=.d)
+#실행파일을 바꾸고 싶을떄
 
-.PHONY: all clean
+TARGET = app
 
-app: $(OBJ)
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.c %.h
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
+
+-include $(DEP)
 
 clean:
-	rm -rf app *.o
+	rm -rf $(TARGET) $(DEP) $(TARGET)
 
-helloTest: abc def
-	#echo $@
-	#echo $^
-	echo $<
-abc:
-	#echo "abc"
-def:
-	#echo "def"
+.PHONY: all clean
