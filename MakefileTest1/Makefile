@@ -12,10 +12,10 @@ all: $(TARGET)
 build:
 	mkdir -p build
 
-$(TARGET): build $(OBJ)
+$(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-build/%.o: src/%.c
+build/%.o: src/%.c | build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 -include $(DEP)
