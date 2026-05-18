@@ -2,23 +2,23 @@ CC = gcc
 CFLAGS = -Wall -Iinclude -MMD # Generate dependency files / include header files in the dependency
 
 SRC = src/main.c src/add.c
-OBJ = $(patsubst src/%.c, build/%.o, $(SRC))
-DEP = $(patsubst src/%.c, build/%.d, $(SRC))
+OBJ = $(SRC:.c=.o)
+DEP = $(SRC:.c=.d)
+#실행파일을 바꾸고 싶을떄
 
 TARGET = app
 
 all: $(TARGET)
 
-build:
-	mkdir -p build
-
-$(TARGET): build $(OBJ)
+$(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-build/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
 
 -include $(DEP)
 
 clean:
-	rm -rf $(TARGET) build
+	rm -rf $(TARGET) $(DEP) $(TARGET)
+
+.PHONY: all clean
