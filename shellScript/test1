@@ -1,0 +1,8 @@
+-rw-rw-r-- 1 bread bread    0  5월 20 09:59 test1
+-rw-rw-r-- 1 bread bread  100  5월 20 09:48 test6
+-rwxrw-r-- 1 bread bread  252  5월 20 09:47 myshell3.sh
+-rwxrw-r-- 1 bread bread  614  5월 20 09:34 myshell2.sh
+-rwxrw-r-- 1 bread bread  614  5월 20 09:47 myshell1.sh
+drwxrwxr-x 2 bread bread 4096  5월 20 09:59 .
+drwxrwxr-x 7 bread bread 4096  5월 20 09:10 ..
+합계 24

@@ -6,9 +6,9 @@ int add(int a, int b) {
 }
 
 int main() {
-    char* str = "Hello, World!";
-    printf("%s\n", str);
-    str[0] = 'h'; // This will cause a segmentation fault because str is a string literal
+    //char* str = "Hello, World!";
+    //printf("%s\n", str);
+    //str[0] = 'h'; // This will cause a segmentation fault because str is a string literal
     int x = 5;
     int y = 10;
     int z = add(x, y);
